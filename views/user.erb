@@ -1,0 +1,8 @@
+<% id = session[:user_id]  %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<strong>email:</strong><i> <%= User.find(id).email %></i>
+		</div>
+	</div>
+</div>

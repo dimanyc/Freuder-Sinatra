@@ -1,0 +1,63 @@
+
+/*Colors*/
+$greyblue:#222D3A;
+$greybluedark:#2c3e50;
+$tealbg:rgb(20, 144, 120);
+$highlight:rgba(211, 84, 0,1.0);
+$clouds:rgba(236, 240, 241,1.0);
+
+
+
+/*Globals*/
+body
+{
+	background: $clouds;
+	color:$greyblue;
+	font-family: 'Lato', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+h1 {font-weight:900;}
+h1.freuder-logo{font-family: 'Arapey', serif;font-size: 9em;font-weight: 200;}
+::selection {background:$highlight;}
+::-moz-selection {background:$highlight;}
+
+/*Mix-Ins*/
+a{-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5s;tansition:.5s;}
+.col-md-9.col-md-offset-1 text-center{background:$greybluedark;color:white;}
+.alert { position: relative;z-index: 999999;left: -50%;}
+.span {position: relative;display: block;}
+.navbar-inverse{background:$greybluedark!important;}
+.navbar 
+{
+	ul
+	{
+		li
+		{
+			a
+			{
+				color:white!important;
+			}
+		}
+	}
+}
+
+
+.navbar 
+{
+	ul
+	{
+		li
+		{
+			a:hover
+			{
+				color:$highlight!important;
+			}
+		}
+	}
+}
+
+/*Custom*/
+.dn_ad{position: absolute;left: 50%;}

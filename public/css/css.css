@@ -1,0 +1,60 @@
+/*Colors*/
+/*Globals*/
+body {
+  background: #ecf0f1;
+  color: #222D3A;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+  text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px; }
+
+h1 {
+  font-weight: 900; }
+
+h1.freuder-logo {
+  font-family: 'Arapey', serif;
+  font-size: 9em;
+  font-weight: 200; }
+
+::selection {
+  background: #d35400; }
+
+::-moz-selection {
+  background: #d35400; }
+
+/*Mix-Ins*/
+a {
+  -o-transition: .5s;
+  -ms-transition: .5s;
+  -moz-transition: .5s;
+  -webkit-transition: .5s;
+  tansition: .5s; }
+
+.col-md-9.col-md-offset-1 text-center {
+  background: #2c3e50;
+  color: white; }
+
+.alert {
+  position: relative;
+  z-index: 999999;
+  left: -50%; }
+
+.span {
+  position: relative;
+  display: block; }
+
+.navbar-inverse {
+  background: #2c3e50 !important; }
+
+.navbar ul li a {
+  color: white !important; }
+
+.navbar ul li a:hover {
+  color: #d35400 !important; }
+
+/*Custom*/
+.dn_ad {
+  position: absolute;
+  left: 50%; }
+
+/*# sourceMappingURL=css.css.map */

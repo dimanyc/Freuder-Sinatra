@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<% menu_options = ["Home", "Feed", "Posts", "Addresses", "Rooms"] %>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="description" content="Dimitry is testing his new Sinatra App">
+    <meta name="author" content="Dimitry Nazarov">
+    <title>LooksLegit Hotels Inc. - Lorem Ipsum is simply dummy text</title>
+
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!--Dimitry' CSS-->
+	<link rel="stylesheet" href="/css/css.css">
+
+	<!--jQuery-->
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<!--Modals and stuff-->
+	<script src="/js/script.js"></script>
+
+	<!--Google Font-->
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,900,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arapey' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<div class="row">
+  <div class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">LooksLegit Hotel Inc.</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav"><% menu_options.each do |i| %>
+		 <li><a href="/<%= i %>"><%= i %></a></li><% end %>            			
+        </ul><!---end_nav ul-->
+      </div><!--/.nav-collapse -->
+    </div><!--end_container-->
+  </div><!--end_navbar-->
+</div><!--end_.row-->
+	<% if flash.has?(:notice) %>
+	<div class="dn_ad">
+	<div class="row">
+		<div class="container">
+		    <div class="alert alert-success fade in" role="alert">
+			    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		    	 <strong><%= flash[:notice] %></strong>
+		    </div>
+		</div><!--end_.container-->
+	</div><!--end_.row-->
+	</div><!--end_dn_ad-->
+	<%elsif flash.has?(:alert) %>
+	<div class="dn_ad">
+	<div class="row">
+		<div class="container">
+		    <div class="alert alert-warning fade in" role="alert">
+			    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		    	 <strong><%= flash[:notice] %></strong>
+		    </div>
+		</div><!--end_.container-->
+	</div><!--end_.row-->
+	</div><!--end_dn_ad-->	
+	<% end %>
+
+<%=yield %>
+
+	
+
+</body>
+</html>
+
