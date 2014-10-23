@@ -43,6 +43,16 @@ a {
   position: relative;
   display: block; }
 
+.navbar-brand {
+  padding-top: 0;
+  vertical-align: center; }
+  .navbar-brand img {
+    padding-top: 5px; }
+  .navbar-brand h1 {
+    font-family: 'Arapey', serif;
+    font-weight: normal;
+    display: inline; }
+
 .navbar-inverse {
   background: #2c3e50 !important; }
 

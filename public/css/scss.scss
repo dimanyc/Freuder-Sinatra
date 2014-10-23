@@ -29,6 +29,18 @@ a{-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5
 .col-md-9.col-md-offset-1 text-center{background:$greybluedark;color:white;}
 .alert { position: relative;z-index: 999999;left: -50%;}
 .span {position: relative;display: block;}
+
+
+.navbar-brand
+ {
+ 	padding-top:0;
+ 	vertical-align: center;
+ 	img {padding-top:5px;}
+ 	h1{font-family: 'Arapey', serif;font-weight: normal;display:inline;}
+
+ }
+
+
 .navbar-inverse{background:$greybluedark!important;}
 .navbar 
 {
