@@ -1,8 +1,14 @@
 <% id = session[:user_id]  %>
+
+<% user = User.where(username: session[:username]).first %>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<strong>email:</strong><i> <%= User.find(id).email %></i>
+			<!--<strong>email:</strong><i> <%= session[:username] %></i>
+			<strong>email:</strong><i> <%= User.find(id).password %></i>-->
+			<strong> Username:</strong> <%= user.username %> <%= session[:username] %>
+		
+
 		</div>
 	</div>
 </div>

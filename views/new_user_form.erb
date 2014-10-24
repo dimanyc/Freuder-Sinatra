@@ -1,12 +1,49 @@
-<form method="POST" action="/sign-up">
+<div class="col-md-12 col-md-offset-0 text-center">
+					
+					<h3>Please sign-in:</h3>
+		
+					<div class="col-md-6 col-md-offset-3">
+						<form method="POST" action="/sign-up">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-user"></span></span>
+								<input type="text" class="form-control" placeholder="Username" name="username">
+							</div><!--end_input-group-->
+						<br/>
 
-  <label for="email">email</label>
-  <input type="text" name="email">
-  <br/>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="password" class="form-control" placeholder="Password" name="password">
+						</div><!--end_input-group-->
+						<br/>
 
-  <label for="password">Password</label>
-  <input type="password" name="password">
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="password" class="form-control" placeholder="Confirm Password" name="password">
+						</div><!--end_input-group-->
+						<br/>
 
-  <br/>
-  <input type="submit"> 
-</form>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="fname" class="form-control" placeholder="First Name" name="fname">
+						</div><!--end_input-group-->												
+						<br/>
+
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="lname" class="form-control" placeholder="Last Name" name="lname">
+						</div><!--end_input-group-->
+
+						<br/>
+						
+						<button type="submit" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon glyphicon-log-in"></span> Log-In
+						</button>
+
+						</form>
+						<br/>
+						<p>or <a href="/sign-up">create an account</a></p>
+					</div><!--end col-md-4 / formgroup-->
+				</div><!--end_col-md-4-->
+	
+			</div><!--end_col-md-9-->
+		</div><!--end_col-md-12-->
