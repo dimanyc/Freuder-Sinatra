@@ -19,21 +19,17 @@ end
 post '/' do
 
 	@user = User.where(username: params[:username]).first
-	@user_max = User.ids.max
-	@user_range = (0..@user_max)
 
 		if @user && @user.password == params[:password]
 		session[:user_id] = @user.id
 		flash[:notice] = "User signed in successfully."
-		erb :user,:locals => {:user_id => @user_id}
+		erb :user,:locals => {:user => @user}
 		else
 
 		
-		flash.now[:alert] = "Incorrect Username or Password." 
+		flash[:alert] = "Incorrect Username or Password." 
 		erb :home, :layout => :main
-		#ERROR: loading this flash alert on a blank page, omits the layout.rb for some reason.
-	#yield?
-	#elsif @user.username.where([username == params[:username]]) <=> params[:username] 
+
 	end	
 end
 
@@ -60,9 +56,10 @@ post '/sign-up' do
 	new_user = User.new(params)
 	@user = User.where(username: params[:username]).first
 	if(new_user.save)
+		flash.now[:notice] = "Thanks for registering. Grandpa Sig is excited to see you!"
 		erb :user, :locals => {:user => @new_user}
 	else
-		flash.now[:notice] = "Thanks for registering. Grandpa Sig is excited to see you!" 
+		flash.now[:alert] = "Something is not right. Double-check everything" 
 		erb :home, :layout => :main	
 	end
 
