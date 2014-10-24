@@ -2,8 +2,11 @@ require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'rack-flash'
+
+
  
-set :database, "sqlite3:app.sqlite3"
+configure(:development){set :database, "sqlite:///blog.sqlite3"}
+
 set :sessions, true
 use Rack::Flash, :sweep => true
 
