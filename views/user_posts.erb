@@ -1,0 +1,31 @@
+<!--<%user_posts = Message.where(user_id: session[:user_id]) %>
+<% user_posts.each do |n| %>
+<div class="container">
+<div class="col-md-8 col-md-offest-2">
+    <h1>The title is static until I run a new migration</h1>
+    <p><%= n %></p>
+   
+    <hr>
+    <%end%>
+    
+</div>
+</div>-->
+
+
+<%user_posts = Message.where(user_id: session[:user_id]) %>
+<% user_posts.each do |n| %>
+<div class="container">
+<div class="col-md-8 col-md-offest-2">
+    <h1>The title is static until I run a new migration</h1>
+    <p><%= n %></p>
+    <strong>Author: <%= User.find(session[:user_id]).fname%> <%=User.find(session[:user_id]).lname %> Handle: @<%=User.find(session[:user_id]).username %></strong>
+    <div>
+		<span class="badge">Posted <%= Message.where(user_id: session[:user_id]).first.created_at %></span><div class="pull-right"><span class="label label-default">alice</span> <span class="label label-primary">story</span> <span class="label label-success">blog</span> <span class="label label-info">personal</span> <span class="label label-warning">Warning</span>
+		<span class="label label-danger">Danger</span></div>         
+     </div>
+    <hr>
+    <%end%>  
+
+
+</div>
+</div>
