@@ -12,7 +12,13 @@
 		  <div class="row">
 		    <div class="col-md-12 text-center">
 			    <div id="dn_profile-block" class="col-md-5">
-				    <img src="/img/<%= @user.username %>.jpg" alt="<%= @user.fname %>" class="img-circle">
+				    <img src="<%= if File.exist?("public/img/#{@user.username}.jpg")
+				    	#'public/img/' + @user.username + '.jpg')
+				    					'/img/dimanyc.jpg' 
+				    					else 
+				    					"/img/blank-profile.jpg"
+				    					end	
+				    					%>" alt="<%= @user.fname %> <%= @user.lname %> - <%= @user.username %>" class="img-circle">
 				    <br/>
 				   	<h1><%= @user.fname %> <%= @user.lname %></h1>
 					<h4><strong>Handle:</strong> @<%= @user.username %></h4>

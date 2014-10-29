@@ -2,6 +2,7 @@ require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'rack-flash'
+require 'sinatra/reloader' if development?
 
 
  
