@@ -98,11 +98,12 @@ a{-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5
 #dn_sign-up-img,#dn_main-img{border-radius: 50%;margin-top:2em;}
 #dn_nav-pills
 {
-	span 
-	{
-		margin-top:1.3em;
-			a {color:white;}	
-	}
+	color:white;
+        span 
+    	{
+    		margin-top:1.3em;
+    			a {color:white;}	
+    	}
 }  
 
 #dn_nav-pills

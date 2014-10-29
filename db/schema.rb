@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028210126) do
+ActiveRecord::Schema.define(version: 20141029204314) do
 
   create_table "messages", force: true do |t|
     t.string   "user_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20141028210126) do
     t.string   "tag3"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "user_posts", force: true do |t|
