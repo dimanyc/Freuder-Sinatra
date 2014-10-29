@@ -66,7 +66,14 @@
         <ul class="nav navbar-nav"><% menu_options.each do |i| %>
 		 <li><a href="/<%= i %>"><%= i %></a></li><% end %>            			
         </ul><!---end_nav ul-->
+			<div class="col-md-2 pull-right" id="dn_nav-pills">
+				<span class="badge"><a href="/logout">Logout</a></span>
+			</div><!--end_col-md-5-->
       </div><!--/.nav-collapse -->
+
+
+
+
     </div><!--end_container-->
   </div><!--end_navbar-->
 </div><!--end_.row-->
@@ -97,7 +104,7 @@
 <%=yield %>
 
 	
-
+<small>Session ID: <%=session[:user_id] %></small>
 </body>
 </html>
 

@@ -96,7 +96,22 @@ a{-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5
 #dn_profile-block{float:none;margin:auto;}/*positioning the col-md-5 by removing the float and aligning the div to the middle - margin:auto hack*/
 #dn_main-img{text-shadow: 0 -1px 0 rgba(0,0,0,.2);-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);}
 #dn_sign-up-img,#dn_main-img{border-radius: 50%;margin-top:2em;}
+#dn_nav-pills
+{
+	span 
+	{
+		margin-top:1.3em;
+			a {color:white;}	
+	}
+}  
 
+#dn_nav-pills
+{
+	span:hover
+	{	background-color:whtie;
+		a {color:$highlight!important;text-decoration:none;}	
+	}
+}  
 /*Parallax*/
 .parallax-section-1{background-position: center center;background-repeat: no-repeat;background-attachment: fixed;background-image:url(/img/dimanyc-wall_.jpg);height:20em;}
 
