@@ -1,4 +1,5 @@
 		<!--Wall-->
+		<% followers = User.find(@user.id).followee %>
 		<div class="row jumbotron parallax-section-1" id="dn_profile-wall">
 <!-- 			<div class="container">
 		    	<div class="">
@@ -14,7 +15,7 @@
 			    <div id="dn_profile-block" class="col-md-5">
 				    <img src="<%= if File.exist?("public/img/#{@user.username}.jpg")
 				    	#'public/img/' + @user.username + '.jpg')
-				    					'/img/dimanyc.jpg' 
+				    					"/img/#{@user.username}.jpg"
 				    					else 
 				    					"/img/blank-profile.jpg"
 				    					end	
@@ -30,9 +31,25 @@
 					    <hr/>
 					    <strong>About:</strong><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 					    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+						<strong><a href="/posts">View My Posts</a></strong><br/>
+					    <strong>Followers:</strong>
+					    <ul id="dn_followers"><% followers.each do |i| %>
+					   
+					   		<li>
+					   		<a href="<%=i.username %>">
+					   		<img src="/img/<%=i.username%>.jpg" alt="<%=i.username%>" class="img-circle" />
+					   		<p><%=i.username %></p>
+					   		</a>
+					   		</li><% end %>  
+					    </ul>
 					</div>
 			    </div><!--end_#dn_profile-block-->
-			    <strong><a href="/posts">View My Posts</a></strong>
+			    
+			    
+			        
+			           
+
+
 		   </div><!--end_col-md-12-->
 		  </div><!--end_container-->
 		</div><!--end_row-->
