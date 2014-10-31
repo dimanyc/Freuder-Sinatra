@@ -38,6 +38,10 @@ get '/' do
 	erb :home, :layout => :main
 end
 
+get "/Home" do
+	erb :home, :layout => :main
+end
+
 post '/' do 
 	@user = User.where(username: params[:username]).first
 	if @user && @user.password == params[:password]
@@ -90,6 +94,6 @@ get '/logout' do
 	redirect '/'
 end
 
-get '*feed' do
+get '/Feed' do
 	erb :feed
 end
