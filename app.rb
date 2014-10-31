@@ -90,6 +90,6 @@ get '/logout' do
 	redirect '/'
 end
 
-get '/feed' do
+get '*/feed' do
 	erb :feed
 end
