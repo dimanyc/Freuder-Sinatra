@@ -1,5 +1,6 @@
 <!--posts by user-->
-<%user_posts = Message.where(user_id: session[:user_id]).ids %>
+<%user_posts = User.find(session[:user_id]).messages  %>
+<!-- #Message.where(user_id: session[:user_id]).ids -->
 <div class="container">
 <div class="col-md-8 col-md-offest-2">
 <h1>Dynamically-populated articles based on user id</h1>
