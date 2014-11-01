@@ -34,8 +34,17 @@ post "/img-upload" do
 end
 
 
+
 get '/' do 
-	erb :home, :layout => :main
+	if (session[:user_id])
+		@user = User.where(id: session[:user_id]).first
+		flash[:notice] = "Welcome back, #{@user.fname}!"
+		erb :user, :locals => { :user => @user }
+		redirect "/user/#{@user.username}"	
+		
+	else
+		erb :home, :layout => :main
+	end
 end
 
 get "/Home" do
@@ -76,8 +85,8 @@ post '/sign-up' do
 	@user = User.new(params)
 	if(@user.save)
 		session[:user_id] = @user.id
-		flash.now[:notice] = "Thanks for registering. Grandpa Sig is excited to see you!"
 		erb :user, :locals => { :user => @user }
+		flash.now[:notice] = "Thanks for registering. Grandpa Sig is excited to see you!"
 		redirect "/user/#{@user.username}"
 	else
 		flash.now[:alert] = "Something is not right. Double-check everything" 
@@ -96,4 +105,9 @@ end
 
 get '/Feed' do
 	erb :feed
+end
+
+get '/test' do
+	@user = User.where(id: session[:user_id]).first
+	erb :user_2, :locals => {:user => @user}
 end

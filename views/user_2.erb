@@ -1,0 +1,62 @@
+
+		<!--Wall-->
+		<div class="row jumbotron parallax-section-1">
+			<div class="container">
+
+			</div><!--end_.container-->
+		</div><!--end_.row-->
+
+		<!--Profile Pic-->
+		<div class="row" id="profile_header">
+			<div class="container">
+				<div class="col-md-3 text-center" id="dn_user-pic">
+					<img src="<%= if File.exist?("public/img/#{@user.username}.jpg")
+				    	
+				    					"/img/#{@user.username}.jpg"
+				    					else 
+				    					"/img/blank-profile.jpg"
+				    					end	
+				    					%>" alt="<%= @user.fname %> <%= @user.lname %> - <%= @user.username %>" class="img-circle">
+
+				<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-collapse-up"></span> Upload New Image</button>
+				</div><!--end_col-md-4-->
+							    
+			    <div class="col-md-9">
+		            
+				    <h1><%=@user.fname%> <%= @user.lname %> | <%= @user.username %></h1>
+		            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+					<br>
+
+				<div class="tabbable">
+
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#pane1" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> News feed</a></li>
+						<li><a href="#pane2" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span> Post New Slip</a></li>
+						<li><a href="#pane3" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+						<li><a href="#pane3" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div id="pane1" class="tab-pane active">
+							<h4>The Markup</h4>
+							<pre>Code here ...</pre>
+						</div>
+						<div id="pane2" class="tab-pane">
+							<h4>Pane 2 Content</h4>
+							<p> and so on ...</p>
+						</div>
+						<div id="pane3" class="tab-pane">
+							<h4>Pane 3 Content</h4>
+						</div>
+						<div id="pane4" class="tab-pane">
+							<h4>Pane 4 Content</h4>
+						</div>
+					</div><!-- /.tab-content -->
+				</div><!-- /.tabbable -->
+			</div><!--end_container-->
+		</div><!--end_row-->
+		
+
+
+            <div id="push"></div>

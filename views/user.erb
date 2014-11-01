@@ -14,7 +14,7 @@
 		    <div class="col-md-12 text-center">
 			    <div id="dn_profile-block" class="col-md-5">
 				    <img src="<%= if File.exist?("public/img/#{@user.username}.jpg")
-				    	#'public/img/' + @user.username + '.jpg')
+				    	
 				    					"/img/#{@user.username}.jpg"
 				    					else 
 				    					"/img/blank-profile.jpg"
@@ -22,7 +22,7 @@
 				    					%>" alt="<%= @user.fname %> <%= @user.lname %> - <%= @user.username %>" class="img-circle">
 				    <br/>
 				   	<h1><%= @user.fname %> <%= @user.lname %></h1>
-					<h4><strong>Handle:</strong> @<%= @user.username %></h4>
+					<h4><strong>Handle:</strong> @<%= @user.username %> | <%= @user.username %></h4>
 					<div style="text-align:left">
 						<strong>First Name:</strong> <%=@user.fname %><br/>
 					    <strong>Last Name:</strong> <%=@user.lname %><br/>
