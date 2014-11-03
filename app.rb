@@ -67,7 +67,7 @@ end
 get "/user/*" do
 	if (session[:user_id])
 		@user = User.where(id: session[:user_id]).first
-		erb :user
+		erb :user_2, :locals => {:user => @user}
 
 	else
 		redirect '/'

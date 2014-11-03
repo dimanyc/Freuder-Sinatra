@@ -59,6 +59,14 @@ a {
   margin-right: 0px;
   margin-left: 0px; }
 
+.container {
+  width: auto;
+  margin-left: 0;
+  margin-right: 0; }
+
+.well {
+  margin-top: 0; }
+
 .col-md-10.col-md-offset-1 {
   margin-top: -1em; }
 
@@ -106,6 +114,10 @@ a {
     border: 1em #ecf0f1 solid; }
   #profile_header h1 {
     color: #222D3A; }
+  #profile_header ul {
+    list-style-type: none; }
+  #profile_header .col-md-9 {
+    margin-top: 0em; }
 
 #dn_profile-block {
   float: none;
@@ -153,16 +165,36 @@ h1#dn_user-full-name {
   margin-top: 2em;
   text-shadow: 2px 2px 8px rgba(51, 51, 51, 0.3); }
 
-#profile_header ul {
-  list-style-type: none; }
-#profile_header .col-md-9 {
-  margin-top: 9em; }
+/*Tabs*/
+.tab-pane {
+  padding-top: 2em; }
 
-.panel-heading {
-  min-height: 3em;
-  line-height: 3em; }
-  .panel-heading ul {
-    height: 20px; }
+.tab-pane.active {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-top: 0px;
+  margin-bottom: 0px; }
+
+.tab-pane:not(.active) {
+  padding-bottom: .2em;
+  border-bottom: 1px #dddddd solid;
+  border-bottom: #dddddd 1px solid;
+  margin-bottom: 0px; }
+
+.tabbable {
+  padding-top: 3px; }
+  .tabbable ul li {
+    margin-bottom: 1px; }
+  .tabbable ul li.active {
+    padding-bottom: 1px;
+    margin-top: 1px; }
+    .tabbable ul li.active a {
+      margin-bottom: -6px; }
+  .tabbable ul li:not(.active) {
+    margin-top: -1px; }
+
+.tab-content {
+  margin-top: -1px; }
 
 /*Parallax*/
 .parallax-section-1 {

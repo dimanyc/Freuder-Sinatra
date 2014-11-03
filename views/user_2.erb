@@ -1,3 +1,6 @@
+<%user_posts = User.find(session[:user_id]).messages  %>
+<%all_posts = Message.all.ids %>
+<% followers = User.find(@user.id).followee %>
 
 		<!--Wall-->
 		<div class="row jumbotron parallax-section-1">
@@ -19,14 +22,23 @@
 				    					%>" alt="<%= @user.fname %> <%= @user.lname %> - <%= @user.username %>" class="img-circle">
 
 				<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-collapse-up"></span> Upload New Image</button>
+				<div id="followers">
+				<h3>Followers:</h3>
+				<ul id="dn_followers"><% followers.each do |i| %>
+					   
+					   		<li>
+					   		<a href="<%=i.username %>">
+					   		<img src="/img/<%=i.username%>.jpg" alt="<%=i.username%>" class="img-circle" />
+					   		<%=i.username %>
+					   		</a>
+					   		</li><% end %>  
+					    </ul>
+				</div>
 				</div><!--end_col-md-4-->
 							    
 			    <div class="col-md-9">
 		            
 				    <h1><%=@user.fname%> <%= @user.lname %> | <%= @user.username %></h1>
-		            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-
-					<br>
 
 				<div class="tabbable">
 
@@ -38,16 +50,84 @@
 					</ul>
 
 					<div class="tab-content">
-						<div id="pane1" class="tab-pane active">
-							<h4>The Markup</h4>
-							<pre>Code here ...</pre>
-						</div>
+						<div id="pane1" class="tab-pane active"><%all_posts.each do |n| %>
+
+						<div class="container">
+							<div class="well col-md-12">
+								<div class="media">
+							      	<a class="pull-left" href="#">
+							    		<img src="<%= if File.exist?("public/img/#{User.find(Message.find(n).user_id).username}.jpg")
+				    	
+				    					"/img/#{User.find(Message.find(n).user_id).username}.jpg"
+				    					else 
+				    					"/img/blank-profile.jpg"
+				    					end	
+				    					%>" alt="<%= @user.fname %> <%= @user.lname %> - <%= @user.username %>" class="img-circle">
+							  		</a>
+							  		<div class="media-body">
+							    		<h4 class="media-heading"><%=Message.find(n).title %></h4>
+							          	<p class="text-right">By <%= User.find(Message.find(n).user_id).fname%> <%= User.find(Message.find(n).user_id).lname%> / Handle: @<%= User.find(Message.find(n).user_id).username%></p>
+							          	<p><%= Message.find(n).message %></p>
+							          	<ul class="list-inline list-unstyled">
+								  			<li><span><i class="glyphicon glyphicon-calendar"></i> <%= Message.find(n).created_at %> </span></li>
+								            <li>|</li>
+								            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+								            <li>|</li>
+								            <li>
+								               <span class="glyphicon glyphicon-star"></span>
+								                        <span class="glyphicon glyphicon-star"></span>
+								                        <span class="glyphicon glyphicon-star"></span>
+								                        <span class="glyphicon glyphicon-star"></span>
+								                        <span class="glyphicon glyphicon-star-empty"></span>
+								            </li>
+								            <li>|</li>
+								            <li>
+												<span><i class="fa fa-facebook-square"></i></span>
+												<span><i class="fa fa-twitter-square"></i></span>
+												<span><i class="fa fa-google-plus-square"></i></span>
+								            </li>
+										</ul>
+									</div>
+							    </div>
+							</div><!--end_well-->
+							</div><!--end_panel--><%end %>
+						</div><!--end_.container-->
 						<div id="pane2" class="tab-pane">
-							<h4>Pane 2 Content</h4>
-							<p> and so on ...</p>
-						</div>
+							<div class="container">
+								<div class="row">
+								    <div class="col-lg-12">
+								        <form action="" method="POST" enctype="multipart/form-data" id="form_id">
+								            <div class="form-group">
+								                 <h5><label for="Message_Title">Title</label></h5>
+
+								                <input type="text" name="MessageTitle" class="form-control" tabindex="1" placeholder="Enter your name" pattern="[a-zA-Z. ]{1,50}" required>
+								            </div>
+								            <div class="form-group">
+								                 <h5><label for="inputMessage">Message</label></h5>
+
+								                <textarea class="form-control" rows="5" id="comment"></textarea>
+								            </div>
+											<div class="text-center">
+												<button type="submit" class="btn btn-success btn-lg text-center">
+													<span class="glyphicon glyphicon glyphicon-log-in"></span> Post new slip
+												</button>
+											</div>
+								        </form>
+								        <br/>
+								    </div>
+								</div>
+								
+							</div><!--end_.container-->
+						</div><!--#pane2-->
 						<div id="pane3" class="tab-pane">
-							<h4>Pane 3 Content</h4>
+						<div class="container">
+							<div class="row">
+								<strong>First Name:</strong> <%=@user.fname %><br/>
+						    	<strong>Last Name:</strong> <%=@user.lname %><br/>
+						    	<strong>Username:</strong> <%=@user.username %><br/>
+						    	<strong>Email:</strong> <%=@user.email %>	<br/>
+					    	</div><!--end_.row-->
+					    </div><!--end_.container-->
 						</div>
 						<div id="pane4" class="tab-pane">
 							<h4>Pane 4 Content</h4>
@@ -57,6 +137,6 @@
 			</div><!--end_container-->
 		</div><!--end_row-->
 		
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">		
 
 
-            <div id="push"></div>
