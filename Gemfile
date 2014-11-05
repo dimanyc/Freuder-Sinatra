@@ -12,6 +12,7 @@ gem 'rack-flash3', :git => "git://github.com/treeder/rack-flash.git"
 
 group :development do 
 	gem 'sqlite3'
+	gem "tux"
 end
 
 group :production do 

@@ -3,7 +3,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'rack-flash'
 require 'sinatra/reloader' if development?
-require 'sinatra/contrib'
+
 
  
 configure(:development){set :database, "sqlite3:blog.sqlite3"}
@@ -13,62 +13,6 @@ use Rack::Flash, :sweep => true
 
 require './models'
 
-include FileUtils::Verbose
-
-
-
-# get '/', '/Home','/home','/index' do 
-# 	if(session[:user_id])
-# 		@user = User.where(id: session[:user_id]).first
-# 		flash[:notice] = "Welcome back, #{@user.fname}!"
-# 		redirect "user/:username"
-		
-# 	else
-# 		erb :home, :layout => :main
-# 	end
-# end
-
-# post '/', '/Home','/home','/index' do 
-# 	@user = User.where(username: params[:username]).first
-		
-# 		if @user.username == params[:username] && @user.password == params[:password]
-# 	 		session[:user_id] = @user.id
-# 	 		flash[:notice] = "Grandpa Sigmnud is excited to see you, #{@user.fname}"
-# 	 		#redirect "user/:username", :locals => { :user => @user }
-# 	 		redirect "user/#{@user.username}", :locals => { :user => @user }
-# 	 	else
-# 	 		flash[:alert] = "Incorrect Username or Password." 
-# 	  		erb :home, :layout => :main
-#  		end
-# end
-
-# get "user/#{@user.username}" do |username|
-# 	@user = User.find(id: session[:user_id]).first
-# 	username = @user.username
-	
-
-# 	if (session[:user_id])
-# 		flash[:notice] = "Grandpa Sigmnud is excited to see you, #{@user.fname}"	
-# 		#@user = User.where(id: session[:user_id]).first
-# 		erb :user, :locals => {:user => @user}
-# 	else
-# 		redirect '/'
-# 		flash[:alert] = "Wrong email / password combination"
-# 	end
-
-# end
-
-
-
-
-
-# get '/logout' do
-# 	session.clear
-# 	redirect '/'
-# end
-
-
-#### second version ends here
 
 # helpers do 
 # 	def user
@@ -91,7 +35,7 @@ end
 
 
 
-get '/', '/Home','/home','/index' do 
+get '/' do 
 	if (session[:user_id])
 		@user = User.where(id: session[:user_id]).first
 		flash[:notice] = "Welcome back, #{@user.fname}!"
@@ -107,7 +51,7 @@ get "/Home" do
 	erb :home, :layout => :main
 end
 
-post '/', '/Home','/home','/index' do 
+post '/' do 
 	@user = User.where(username: params[:username]).first
 	if @user && @user.password == params[:password]
 		session[:user_id] = @user.id
@@ -141,7 +85,7 @@ post '/sign-up' do
 	@user = User.new(params)
 	if(@user.save)
 		session[:user_id] = @user.id
-		erb :user_2, :locals => { :user => @user }
+		erb :user, :locals => { :user => @user }
 		flash.now[:notice] = "Thanks for registering. Grandpa Sig is excited to see you!"
 		redirect "/user/#{@user.username}"
 	else
@@ -156,17 +100,11 @@ end
 
 post '/post-new-slip' do
 	@message = Message.new(params)
-	@user = User.find(session[:user_id])
-	@message.user_id = @user.id
-
 	if (@message.save)
-		erb :user_2, :locals => { :user => @user }
-		flash.now[:notice] = "Message has been posted"
 		redirect "/user/#{@user.username}"
-
+		flash.now[:notice] = "Message has been posted"
 	else
 		flash.now[:alert] = "Problem! "
-		erb :user_2, :locals => { :user => @user }
 	end
 
 end
