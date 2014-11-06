@@ -182,6 +182,5 @@ get '/Feed' do
 end
 
 get '/test' do
-	@user = User.where(id: session[:user_id]).first
-	erb :user_2, :locals => {:user => @user}
+	erb :user_3, :locals => { :user => @user }
 end

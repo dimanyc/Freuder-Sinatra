@@ -28,6 +28,9 @@ h1.freuder-logo {
 ::-moz-selection {
   background: #d35400; }
 
+h2, h3, h4 {
+  font-weight: 900; }
+
 /*Mix-Ins*/
 a {
   -o-transition: .5s;
@@ -59,16 +62,22 @@ a {
   margin-right: 0px;
   margin-left: 0px; }
 
-.container {
-  width: auto;
-  margin-left: 0;
-  margin-right: 0; }
-
+/*.container{width:auto;margin-left:0;margin-right:0;}*/
 .well {
   margin-top: 0; }
 
 .col-md-10.col-md-offset-1 {
   margin-top: -1em; }
+
+textarea.form-control, #slip input {
+  border-radius: 0; }
+
+.nav-pills > li:hover > a, .nav-pills > li.active:hover > a {
+  background-color: #33ffcc; }
+
+.nav-pills > li.active > a {
+  background-color: white;
+  color: black; }
 
 .navbar-brand {
   padding-top: 0;
@@ -90,6 +99,9 @@ a {
 
 .navbar {
   border-radius: 0; }
+  .navbar .container {
+    padding-left: 0;
+    padding-right: 0; }
   .navbar ul li a {
     color: white !important; }
 
@@ -268,39 +280,51 @@ span.tags {
   z-index: 10; }
 
 /*Profile*/
-/*Panel tabs*/
-.panel-tabs {
-  position: relative;
-  bottom: 30px;
-  clear: both;
-  border-bottom: 1px solid transparent; }
+#dn_profile-body {
+  margin-top: -7em;
+  background-color: white;
+  padding-left: 0 !important;
+  padding-right: 0 !important; }
+  #dn_profile-body img {
+    padding-top: 1em; }
 
-.panel-tabs > li {
-  float: left;
-  margin-bottom: -1px; }
+#dn_profile-left-pane {
+  background-color: whitesmoke; }
 
-.panel-tabs > li > a {
-  margin-right: 2px;
-  margin-top: 4px;
-  line-height: .85;
-  border: 1px solid transparent;
-  border-radius: 4px 4px 0 0;
-  color: #ffffff; }
+#dn_profile-right-pane {
+  padding-left: 0 !important;
+  margin-top: 1px; }
+  #dn_profile-right-pane .tab-pane {
+    border: 0;
+    margin-left: 15px img;
+      margin-left-padding-top: 0 !important; }
 
-.panel-tabs > li > a:hover {
-  border-color: transparent;
-  color: #ffffff;
-  background-color: transparent; }
+#dn_profile-body-inner {
+  padding: 0 !important; }
 
-.panel-tabs > li.active > a,
-.panel-tabs > li.active > a:hover,
-.panel-tabs > li.active > a:focus {
-  color: #fff;
-  cursor: default;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  background-color: rgba(255, 255, 255, 0.23);
-  border-bottom-color: transparent; }
+ul#myTabs {
+  margin-right: -16px; }
+  ul#myTabs li a {
+    border-radius: 0; }
+  ul#myTabs li.active {
+    border: 0px solid #dddddd;
+    border-right: 0; }
+
+.dn_thumb {
+  padding-top: 0 !important; }
+
+#home h2 {
+  padding-left: 15px; }
+
+#dn_author, #dn_post-date {
+  padding-left: 0; }
+
+#slip {
+  padding-left: 15px; }
+  #slip .input-group {
+    display: block; }
+
+#profile {
+  padding-left: 15px; }
 
 /*# sourceMappingURL=css.css.map */

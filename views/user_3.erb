@@ -1,0 +1,134 @@
+<div class="jumbotron parallax-section-1">
+
+</div><!--end_jumbotron-->
+
+<div class="container" id="dn_profile-body">
+  <div class="row panel-body" id="dn_profile-body-inner">
+    
+
+    <!-- Navigation Buttons -->
+    <div class="col-md-3" id="dn_profile-left-pane">
+      <img src="img/dimanyc.jpg" class="img-responsive"/>
+      <h2><strong>Dimitry Nazarov</strong></h2>
+      <strong>Handle:</strong> @dimanyc
+      <hr/>
+      
+          <ul class="nav nav-pills nav-stacked" id="myTabs">
+              
+              <li class="active">
+                <a href="#home"><span class="glyphicon glyphicon-list"></span> Feed</a>
+              </li>
+
+              <li>
+                <a href="#slip"><span class="glyphicon glyphicon-comment"></span> Post New Slip</a>
+              </li>
+
+              <li>
+                <a href="#profile"><span class="glyphicon glyphicon-user"></span> Profile</a>
+              </li>
+
+              <li>
+                <a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a>
+              </li>
+
+          </ul><!--end_.nav_pills-->
+
+      </div><!--end_col-md-3-->
+
+    <!-- Content -->
+    <div class="col-md-9" id="dn_profile-right-pane">
+        <div class="tab-content">
+            <div class="tab-pane active" id="home">
+              <h2>News feed</h2>
+              <br/>
+              <div class="col-md-2">
+                <img src="img/dimanyc-thumb.jpg" alt="test" class="img-circle dn_thumb" />
+              </div><!--end_col-md-3-->
+
+              <div class="col-md-10">
+                <h3>Bye Bye Google Talk</h3> 
+                <p>gmail: Google Talk app for Windows is no longer supported. It is being replaced by the new Hangouts Chrome app. Install the Hangouts app from http://goo.gl/yglfk6</p>
+               
+                <div class="col-md-5" id="dn_author">
+                  <strong>Author:</strong> Dimitry Nazarov / @dimanyc
+                </div>
+                
+                <div class="col-md-5" id="dn_post-date">
+                  <strong>Posted on:</strong> 12/31/2014
+                </div><!--end_col-md-3--> 
+
+              </div><!--end_col-md-10-->
+
+            </div><!--end_#home-->
+
+            <!--New Slip-->
+            <div class="tab-pane" id="slip">
+            <h2>Post New Slip:</h2>
+              <br/>
+
+              <form role="form" action="/post-new-slip" method="POST" accept-charset="UTF-8">
+                <div class="form-group">
+                  <input type="title" class="form-control" id="title" placeholder="Enter the title for your slip" name="title" required>
+                </div><!--end_.form-group-->
+
+              <div class="form-group">
+                <label for="message" class="sr-only">Message</label><br/>
+                  <textarea class="form-control" rows="5" id="message" placeholder="Enter the title for your slip" name="messagage" type="comment" required></textarea>
+              </div><!--end_form-group-->
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-success btn-lg text-center">
+                    <span class="glyphicon glyphicon glyphicon-log-in"></span> Post new slip
+                  </button>
+                </div>
+
+              </form><!--end_form-->              
+            
+            </div><!--end_#slip-->
+            <div class="tab-pane" id="profile">
+
+              <h2>Profile</h2>
+              <br/>
+
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>First Name:</td>
+                      <td>Dimitry</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Last Name::</td>
+                      <td>Nazarov</td>
+                    </tr>
+
+                    <tr>
+                      <td>Username / Handle </td>
+                      <td>@dimanyc</td>
+                    </tr>
+                       
+                    <tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:info@support.com">dimitrynazarov@gmail.com</a></td>
+                      </tr>
+                    </tr>
+                       
+                  </tbody>
+                </table>
+                <h4>Bio</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+            </div><!--end_#profile-->
+        </div>
+    </div>
+
+  </div><!--end_row-->
+</div><!--end_container-->
+
+<!--tabbable script-->
+<script type="text/javascript">
+$('#myTabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+  </script>

@@ -28,7 +28,7 @@ h1 {font-weight:900;text-shadow: 2px 2px 8px rgba(51,51,51,0.3);}
 h1.freuder-logo{font-family: 'Arapey', serif;font-size: 6em;font-weight: 200;}
 ::selection {background:$highlight;}
 ::-moz-selection {background:$highlight;}
-
+h2,h3,h4{font-weight:900;}
 /*Mix-Ins*/
 a{-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5s;tansition:.5s;}
 .nav-tabs>li.active>a{background-color:none!important;}
@@ -37,13 +37,14 @@ a{-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5
 .alert { position: relative;z-index: 999999;left: -50%;}
 .span {position: relative;display: block;}
 .row{margin-right: 0px;margin-left: 0px;}
-.container{width:auto;margin-left:0;margin-right:0;}
+/*.container{width:auto;margin-left:0;margin-right:0;}*/
 .well{margin-top:0;}
-.col-md-10.col-md-offset-1
-{
-	margin-top:-1em;
-}
+.col-md-10.col-md-offset-1{margin-top:-1em;}
+textarea.form-control,#slip input{border-radius:0;}
 
+
+.nav-pills>li:hover>a,.nav-pills>li.active:hover>a{background-color:$logogreen;}
+.nav-pills>li.active>a{background-color:white;color:black;}
 .navbar-brand
  {
  	padding-top:0;
@@ -57,6 +58,11 @@ a{-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5
 .navbar-inverse{background:$greybluedark!important;margin-bottom:0;}
 .navbar 
 {
+    .container
+    {
+        padding-left:0;
+        padding-right:0;
+    }
 	border-radius:0;
 	ul
 	{
@@ -239,44 +245,60 @@ span.tags
 }
 
 /*Profile*/
+#dn_profile-body
 
+{
+ margin-top:-7em;
+ background-color:white;
+ padding-left:0!important;
+ padding-right:0!important;
 
-/*Panel tabs*/
-.panel-tabs {
-    position: relative;
-    bottom: 30px;
-    clear:both;
-    border-bottom: 1px solid transparent;
+    img
+    {
+        padding-top:1em;
+    }
 }
 
-.panel-tabs > li {
-    float: left;
-    margin-bottom: -1px;
+
+#dn_profile-left-pane{background-color:whitesmoke;}
+#dn_profile-right-pane
+{
+    padding-left:0!important;margin-top: 1px;
+
+    .tab-pane
+    {
+        border:0;
+        margin-left: 15px
+        img{padding-top:0!important;}
+    }
 }
 
-.panel-tabs > li > a {
-    margin-right: 2px;
-    margin-top: 4px;
-    line-height: .85;
-    border: 1px solid transparent;
-    border-radius: 4px 4px 0 0;
-    color: #ffffff;
-}
 
-.panel-tabs > li > a:hover {
-    border-color: transparent;
-    color: #ffffff;
-    background-color: transparent;
-}
+#dn_profile-body-inner{padding:0!important;}
 
-.panel-tabs > li.active > a,
-.panel-tabs > li.active > a:hover,
-.panel-tabs > li.active > a:focus {
-    color: #fff;
-    cursor: default;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    background-color: rgba(255,255,255, .23);
-    border-bottom-color: transparent;
+ul#myTabs
+    {
+        margin-right:-16px;
+
+        li
+        {
+            a{  border-radius: 0;}
+        }
+        li.active
+        {
+            border: 0px solid #dddddd; 
+            border-right:0; 
+        }
+    }
+.dn_thumb{padding-top:0!important;}
+#home h2{padding-left:15px;}
+#dn_author,#dn_post-date{padding-left:0;}
+#slip
+{   
+    padding-left:15px;
+    .input-group
+    {
+        display:block;
+    }    
 }
+#profile{padding-left:15px;}
