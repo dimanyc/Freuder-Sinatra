@@ -1,12 +1,15 @@
 require 'bundler/setup'
 require 'sinatra'
-require 'sinatra/activerecord'
-require 'rack-flash'
+
+configure(:development){set :database, "sqlite3:blog.sqlite3"}
 require 'sinatra/reloader' if development?
 require 'sinatra/contrib'
+require 'sinatra/activerecord'
+require 'rack-flash'
+
+
 
  
-configure(:development){set :database, "sqlite3:blog.sqlite3"}
 
 set :sessions, true
 use Rack::Flash, :sweep => true
@@ -123,7 +126,10 @@ end
 get "/user/*" do
 	if (session[:user_id])
 		@user = User.where(id: session[:user_id]).first
-		erb :user_2, :locals => {:user => @user}
+		@all_posts = Message.all.ids 
+		@followers = User.find(@user.id).followee 
+		@user_posts = User.find(session[:user_id]).messages  
+		erb :user_3, :locals => {:user => @user, :all_posts => @all_posts, :followers => @followers, :user_posts => @user_posts}
 
 	else
 		redirect '/'

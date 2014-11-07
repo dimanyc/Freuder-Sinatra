@@ -8,7 +8,14 @@
 
     <!-- Navigation Buttons -->
     <div class="col-md-3" id="dn_profile-left-pane">
-      <img src="img/dimanyc.jpg" class="img-responsive"/>
+      <img src="<%= if File.exist?("public/img/#{@user.username}.jpg")
+              
+                      "/img/#{@user.username}.jpg"
+                      else 
+                      "/img/blank-profile.jpg"
+                      end 
+                      %>" alt="<%= @user.fname %> <%= @user.lname %> - <%= @user.username %>" class="img-responsive">
+
       <h2><strong>Dimitry Nazarov</strong></h2>
       <strong>Handle:</strong> @dimanyc
       <hr/>
@@ -38,26 +45,34 @@
     <!-- Content -->
     <div class="col-md-9" id="dn_profile-right-pane">
         <div class="tab-content">
-            <div class="tab-pane active" id="home">
+            <div class="tab-pane active" id="home">  
               <h2>News feed</h2>
-              <br/>
+              <br/><%all_posts.each do |n| %><% @user_author = User.find(Message.find(n).user_id) %>
               <div class="col-md-2">
-                <img src="img/dimanyc-thumb.jpg" alt="test" class="img-circle dn_thumb" />
+                <img src="<%= if File.exist?("public/img/#{@user_author.username}.jpg")
+              
+                      "/img/#{@user_author.username}.jpg"
+                      else 
+                      "/img/blank-profile.jpg"
+                      end 
+                      %>" alt="<%= @user_author.fname %> <%= @user_author.lname %> - <%= @user_author.username %>" class="img-circle dn_thumb" width="100px" height="100px">
               </div><!--end_col-md-3-->
 
               <div class="col-md-10">
-                <h3>Bye Bye Google Talk</h3> 
-                <p>gmail: Google Talk app for Windows is no longer supported. It is being replaced by the new Hangouts Chrome app. Install the Hangouts app from http://goo.gl/yglfk6</p>
+                <h3><%=Message.find(n).title %></h3> 
+                <p><%= Message.find(n).message %></p>
                
                 <div class="col-md-5" id="dn_author">
-                  <strong>Author:</strong> Dimitry Nazarov / @dimanyc
+                  <strong>Author:</strong> <%= @user.fname%> <%= @user.lname%> / Handle: @<%= @user_author.username%>
                 </div>
                 
                 <div class="col-md-5" id="dn_post-date">
-                  <strong>Posted on:</strong> 12/31/2014
+                  <strong>Posted on:</strong> <%= Message.find(n).created_at %>
                 </div><!--end_col-md-3--> 
-
+                
               </div><!--end_col-md-10-->
+              <hr/>
+              <%end%>
 
             </div><!--end_#home-->
 
@@ -73,7 +88,7 @@
 
               <div class="form-group">
                 <label for="message" class="sr-only">Message</label><br/>
-                  <textarea class="form-control" rows="5" id="message" placeholder="Enter the title for your slip" name="messagage" type="comment" required></textarea>
+                  <textarea class="form-control" rows="5" id="message" placeholder="Enter the title for your slip" name="message" type="comment" required></textarea>
               </div><!--end_form-group-->
 
                 <div class="text-center">
@@ -118,6 +133,34 @@
                 </table>
                 <h4>Bio</h4>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <hr/>
+                <h4>Followers:</h4>
+                  
+                  <div class="row"><% followers.each do |i| %>
+                  <a href="<%=i.username %>">
+                    <div class="col-md-1 vcenter">
+                      <img src="/img/<%=i.username%>.jpg" alt="<%=i.username%>" class="img-circle" width="50" />
+                    </div><!--end_col-md-1-->
+                    
+                    <div class="col-md-2 vcenter">
+                      <a href="#">@<%=i.username %></a>
+                    </div><!--end_col-md-3-->
+                  </a><!--end_.username--> <% end %> 
+                  </div><!--end_.row-->
+                  <hr/>
+                  <h4>Following:</h4>
+                  
+                  <div class="row"><% followers.each do |i| %>
+                  <a href="<%=i.username %>">
+                    <div class="col-md-1 vcenter">
+                      <img src="/img/<%=i.username%>.jpg" alt="<%=i.username%>" class="img-circle" width="50" />
+                    </div><!--end_col-md-1-->
+                    
+                    <div class="col-md-2 vcenter">
+                      <a href="#">@<%=i.username %></a>
+                    </div><!--end_col-md-3-->
+                  </a><!--end_.username--> <% end %> 
+                  </div><!--end_.row-->
             </div><!--end_#profile-->
         </div>
     </div>

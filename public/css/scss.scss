@@ -29,6 +29,7 @@ h1.freuder-logo{font-family: 'Arapey', serif;font-size: 6em;font-weight: 200;}
 ::selection {background:$highlight;}
 ::-moz-selection {background:$highlight;}
 h2,h3,h4{font-weight:900;}
+.vcenter {display: inline-block;vertical-align: middle;float: none;}
 /*Mix-Ins*/
 a{-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5s;tansition:.5s;}
 .nav-tabs>li.active>a{background-color:none!important;}
@@ -301,4 +302,17 @@ ul#myTabs
         display:block;
     }    
 }
-#profile{padding-left:15px;}
+#profile
+    {
+        padding-left:15px;
+        img 
+        {
+            padding-top:0;
+        }
+        .col-md-3
+        {
+            padding-right:0;
+            padding-left:0;
+        }
+    }
+
