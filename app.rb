@@ -2,13 +2,13 @@ require 'bundler/setup'
 require 'sinatra'
 
 require 'sinatra/reloader' if development?
-require 'sinatra/contrib'
 require 'sinatra/activerecord'
 require 'rack-flash'
 
+#require 'sinatra/contrib'
 
 
- configure(:development){set :database, "sqlite3:blog.sqlite3"}
+configure(:development){set :database, "sqlite3:blog.sqlite3"}
 
 
 set :sessions, true
@@ -16,10 +16,10 @@ use Rack::Flash, :sweep => true
 
 require './models'
 
-include FileUtils::Verbose
+#, '/Home','/home','/index'
 
 
-get '/', '/Home','/home','/index' do 
+get '/' do 
 	if (session[:user_id])
 		@user = User.where(id: session[:user_id]).first
 		flash[:notice] = "Welcome back, #{@user.fname}!"
@@ -35,7 +35,7 @@ get "/Home" do
 	erb :home, :layout => :main
 end
 
-post '/', '/Home','/home','/index' do 
+post '/' do 
 	@user = User.where(username: params[:username]).first
 	if @user && @user.password == params[:password]
 		session[:user_id] = @user.id
@@ -123,3 +123,4 @@ get "/users/:id/follow" do
 	flash[:notice] = "User followed successfully."
 	redirect "/"
 end
+
