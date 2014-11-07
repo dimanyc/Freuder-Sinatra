@@ -80,6 +80,8 @@ include FileUtils::Verbose
 # end
 
 include FileUtils::Verbose
+class MyApp < Sinatra::Base
+  register Sinatra::Contrib
 
 get "/img-upload" do
     erb :img_upload
@@ -189,4 +191,6 @@ end
 
 get '/test' do
 	erb :user_3, :locals => { :user => @user }
+end
+
 end
