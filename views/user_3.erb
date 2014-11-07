@@ -150,7 +150,7 @@
                   <hr/>
                   <h4>Following:</h4>
                   
-                  <div class="row"><% followers.each do |i| %>
+                  <div class="row"><% followed.each do |i| %>
                   <a href="<%=i.username %>">
                     <div class="col-md-1 vcenter">
                       <img src="/img/<%=i.username%>.jpg" alt="<%=i.username%>" class="img-circle" width="50" />
@@ -159,7 +159,7 @@
                     <div class="col-md-2 vcenter">
                       <a href="#">@<%=i.username %></a>
                     </div><!--end_col-md-3-->
-                  </a><!--end_.username--> <% end %> 
+                  </a><!--end_.username--><% end %> 
                   </div><!--end_.row-->
             </div><!--end_#profile-->
         </div>

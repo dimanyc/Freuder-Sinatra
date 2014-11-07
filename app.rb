@@ -1,7 +1,6 @@
 require 'bundler/setup'
 require 'sinatra'
 
-configure(:development){set :database, "sqlite3:blog.sqlite3"}
 require 'sinatra/reloader' if development?
 require 'sinatra/contrib'
 require 'sinatra/activerecord'
@@ -9,7 +8,8 @@ require 'rack-flash'
 
 
 
- 
+ configure(:development){set :database, "sqlite3:blog.sqlite3"}
+
 
 set :sessions, true
 use Rack::Flash, :sweep => true
@@ -17,83 +17,6 @@ use Rack::Flash, :sweep => true
 require './models'
 
 include FileUtils::Verbose
-
-
-
-# get '/', '/Home','/home','/index' do 
-# 	if(session[:user_id])
-# 		@user = User.where(id: session[:user_id]).first
-# 		flash[:notice] = "Welcome back, #{@user.fname}!"
-# 		redirect "user/:username"
-		
-# 	else
-# 		erb :home, :layout => :main
-# 	end
-# end
-
-# post '/', '/Home','/home','/index' do 
-# 	@user = User.where(username: params[:username]).first
-		
-# 		if @user.username == params[:username] && @user.password == params[:password]
-# 	 		session[:user_id] = @user.id
-# 	 		flash[:notice] = "Grandpa Sigmnud is excited to see you, #{@user.fname}"
-# 	 		#redirect "user/:username", :locals => { :user => @user }
-# 	 		redirect "user/#{@user.username}", :locals => { :user => @user }
-# 	 	else
-# 	 		flash[:alert] = "Incorrect Username or Password." 
-# 	  		erb :home, :layout => :main
-#  		end
-# end
-
-# get "user/#{@user.username}" do |username|
-# 	@user = User.find(id: session[:user_id]).first
-# 	username = @user.username
-	
-
-# 	if (session[:user_id])
-# 		flash[:notice] = "Grandpa Sigmnud is excited to see you, #{@user.fname}"	
-# 		#@user = User.where(id: session[:user_id]).first
-# 		erb :user, :locals => {:user => @user}
-# 	else
-# 		redirect '/'
-# 		flash[:alert] = "Wrong email / password combination"
-# 	end
-
-# end
-
-
-
-
-
-# get '/logout' do
-# 	session.clear
-# 	redirect '/'
-# end
-
-
-#### second version ends here
-
-# helpers do 
-# 	def user
-# 		@user = User.where(username: params[:username]).first.username.to_s
-# 	end
-# end
-
-include FileUtils::Verbose
-class MyApp < Sinatra::Base
-  register Sinatra::Contrib
-
-get "/img-upload" do
-    erb :img_upload
-end
-
-post "/img-upload" do
-    tempfile = params[:file][:tempfile] 
-    filename = params[:file][:filename] 
-    cp(tempfile.path, "public/img/propfiles/#{filename}")
-    'Yeaaup'
-end
-
 
 
 get '/', '/Home','/home','/index' do 
@@ -129,9 +52,10 @@ get "/user/*" do
 	if (session[:user_id])
 		@user = User.where(id: session[:user_id]).first
 		@all_posts = Message.all.ids 
-		@followers = User.find(@user.id).followee 
+		@followers = User.find(@user.id).followers
+		@followed = User.find(@user.id).followed
 		@user_posts = User.find(session[:user_id]).messages  
-		erb :user_3, :locals => {:user => @user, :all_posts => @all_posts, :followers => @followers, :user_posts => @user_posts}
+		erb :user_3, :locals => {:user => @user, :all_posts => @all_posts, :followers => @followers,:followed => @followed ,:user_posts => @user_posts}
 
 	else
 		redirect '/'
@@ -193,4 +117,9 @@ get '/test' do
 	erb :user_3, :locals => { :user => @user }
 end
 
+get "/users/:id/follow" do
+	user = User.find(params[:id])
+	current_user.follow!(user) if user
+	flash[:notice] = "User followed successfully."
+	redirect "/"
 end
