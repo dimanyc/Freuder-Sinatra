@@ -31,10 +31,6 @@ get '/' do
 	end
 end
 
-get "/Home" do
-	erb :home, :layout => :main
-end
-
 post '/' do 
 	@user = User.where(username: params[:username]).first
 	if @user && @user.password == params[:password]
@@ -124,3 +120,77 @@ get "/users/:id/follow" do
 	redirect "/"
 end
 
+get '/index' do 
+	if (session[:user_id])
+		@user = User.where(id: session[:user_id]).first
+		flash[:notice] = "Welcome back, #{@user.fname}!"
+		erb :user, :locals => { :user => @user }
+		redirect "/user/#{@user.username}"	
+		
+	else
+		erb :home, :layout => :main
+	end
+end
+
+get '/home' do 
+	if (session[:user_id])
+		@user = User.where(id: session[:user_id]).first
+		flash[:notice] = "Welcome back, #{@user.fname}!"
+		erb :user, :locals => { :user => @user }
+		redirect "/user/#{@user.username}"	
+		
+	else
+		erb :home, :layout => :main
+	end
+end
+
+get '/Home' do 
+	if (session[:user_id])
+		@user = User.where(id: session[:user_id]).first
+		flash[:notice] = "Welcome back, #{@user.fname}!"
+		erb :user, :locals => { :user => @user }
+		redirect "/user/#{@user.username}"	
+		
+	else
+		erb :home, :layout => :main
+	end
+end
+
+post '/index' do 
+	@user = User.where(username: params[:username]).first
+	if @user && @user.password == params[:password]
+		session[:user_id] = @user.id
+		flash[:notice] = "User signed in successfully."
+		erb :user, :locals => { :user => @user }
+		redirect "/user/#{@user.username}"
+	else 
+		flash[:alert] = "Incorrect Username or Password." 
+ 		erb :home, :layout => :main
+	end
+end
+
+post '/home' do 
+	@user = User.where(username: params[:username]).first
+	if @user && @user.password == params[:password]
+		session[:user_id] = @user.id
+		flash[:notice] = "User signed in successfully."
+		erb :user, :locals => { :user => @user }
+		redirect "/user/#{@user.username}"
+	else 
+		flash[:alert] = "Incorrect Username or Password." 
+ 		erb :home, :layout => :main
+	end
+end
+
+post '/Home' do 
+	@user = User.where(username: params[:username]).first
+	if @user && @user.password == params[:password]
+		session[:user_id] = @user.id
+		flash[:notice] = "User signed in successfully."
+		erb :user, :locals => { :user => @user }
+		redirect "/user/#{@user.username}"
+	else 
+		flash[:alert] = "Incorrect Username or Password." 
+ 		erb :home, :layout => :main
+	end
+end
