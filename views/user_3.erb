@@ -1,6 +1,8 @@
+<% @user = User.where(id: session[:user_id]).first %>
 <% all_posts = Message.all.ids %>
 <% followers = User.find(@user.id).followers %>
 <% followed = User.find(@user.id).followed %>
+
 <div class="jumbotron parallax-section-1">
 
 </div><!--end_jumbotron-->
@@ -40,6 +42,10 @@
               <li>
                 <a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a>
               </li>
+              
+              <li>
+                <a href="#profile-image"><span class="glyphicon glyphicon-picture"></span> Profile Picture</a>
+              </li>              
 
           </ul><!--end_.nav_pills-->
 
@@ -103,6 +109,8 @@
               </form><!--end_form-->              
             
             </div><!--end_#slip-->
+
+            <!--Posting New Slip-->            
             <div class="tab-pane" id="profile">
 
               <h2>Profile</h2>
@@ -165,6 +173,19 @@
                   </a><!--end_.username--><% end %> 
                   </div><!--end_.row-->
             </div><!--end_#profile-->
+
+            <!--Profile Image-->
+            <div id="profile-image">
+            <h2>Please upload your profile image</h2>
+            <code>Image has to be 200x200px</code>
+
+            <form action="/save-profile-image" enctype="multipart/form-data" method="post">
+                <label for="myfile">File to upload:</label>
+                <input id="myfile" type="file" name="myfile">
+                <input id="submit" type="submit" name="submit" value="Upload picture!">
+            </form>
+
+            </div><!--end_profile-image-->
         </div>
     </div>
 

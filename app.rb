@@ -75,8 +75,8 @@ post '/sign-up' do
 
 end
 
-get '*/posts' do 
-	erb :user_posts 
+get '*/Posts' do 
+	erb :feed 
 end
 
 post '/post-new-slip' do
@@ -190,4 +190,18 @@ post '/Home' do
 		flash[:alert] = "Incorrect Username or Password." 
  		erb :home, :layout => :main
 	end
+end
+
+#profile image upload
+get '/save-profile-image' do
+	redirect '/home'
+end
+
+post '/save-profile-image' do
+ File.open('uploads/' + params['myfile'][:filename], "w") do |f|
+    f.write(params['myfile'][:tempfile].read)
+  end
+  flash[:notice] = "The file was successfully uploaded!"
+
+	erb :user_3
 end
