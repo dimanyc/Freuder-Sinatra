@@ -47,9 +47,6 @@ end
 get "/user/*" do
 	if (session[:user_id])
 		@user = User.where(id: session[:user_id]).first
-		@all_posts = Message.all.ids 
-		@followers = User.find(@user.id).followers
-		@followed = User.find(@user.id).followed
 		@user_posts = User.find(session[:user_id]).messages  
 		erb :user_3, :locals => {:user => @user, :all_posts => @all_posts, :followers => @followers,:followed => @followed ,:user_posts => @user_posts}
 
@@ -88,7 +85,7 @@ post '/post-new-slip' do
 	@message.user_id = @user.id
 
 	if (@message.save)
-		erb :user_2, :locals => { :user => @user }
+		erb :user_3, :locals => { :user => @user }
 		flash.now[:notice] = "Message has been posted"
 		redirect "/user/#{@user.username}"
 
