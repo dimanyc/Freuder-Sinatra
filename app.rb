@@ -198,7 +198,7 @@ get '/save-profile-image' do
 end
 
 post '/save-profile-image' do
- File.open('uploads/' + params['myfile'][:filename], "w") do |f|
+ File.open('uploads/' + params['myfile'][:filename], "wb") do |f|
     f.write(params['myfile'][:tempfile].read)
   end
   flash[:notice] = "The file was successfully uploaded!"
