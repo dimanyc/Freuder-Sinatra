@@ -5,6 +5,15 @@ GIT
     rack-flash3 (1.0.5)
       rack
 
+GIT
+  remote: https://github.com/markevans/dragonfly
+  revision: 8d84e11f338f857c1516781bf88340e45a9528c4
+  specs:
+    dragonfly (1.0.7)
+      addressable (~> 2.3)
+      multi_json (~> 1.0)
+      rack
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -21,6 +30,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     backports (3.6.3)
     bond (0.5.1)
@@ -78,6 +88,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  dragonfly!
   pg
   rack-flash3!
   rake

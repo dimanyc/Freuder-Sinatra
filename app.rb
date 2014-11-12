@@ -1,11 +1,11 @@
 require 'bundler/setup'
 require 'sinatra'
-
 require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
 require 'rack-flash'
-
-#require 'sinatra/contrib'
+require 'dragonfly'
+#app = Dragonfly.app
+# require 'sinatra/contrib'
 
 
 configure(:development){set :database, "sqlite3:blog.sqlite3"}
@@ -66,7 +66,7 @@ post '/sign-up' do
 	@user = User.new(params)
 	if(@user.save)
 		session[:user_id] = @user.id
-		erb :user_2, :locals => { :user => @user }
+		erb :user_3, :locals => { :user => @user }
 		flash.now[:notice] = "Thanks for registering. Grandpa Sig is excited to see you!"
 		redirect "/user/#{@user.username}"
 	else
@@ -91,7 +91,7 @@ post '/post-new-slip' do
 
 	else
 		flash.now[:alert] = "Problem! "
-		erb :user_2, :locals => { :user => @user }
+		erb :user_3, :locals => { :user => @user }
 	end
 
 end
@@ -200,7 +200,8 @@ end
 post '/save-profile-image' do
 	@user = User.find(session[:user_id])
 	@filename = @user.username
-# File.open('uploads/' + params['myfile'][:filename], "wb") do |f|
+	# File.open('uploads/' + params['myfile'][:filename], "wb") do |f|
+
 	File.open('uploads/' + @filename, "wb") do |f|
     #f.write(@filename[:tempfile].read)
     f.write(params['myfile'][:tempfile].read)

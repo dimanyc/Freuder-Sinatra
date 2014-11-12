@@ -2,6 +2,8 @@
 <% all_posts = Message.all.ids %>
 <% followers = User.find(@user.id).followers %>
 <% followed = User.find(@user.id).followed %>
+<% @@user_pic = @user.username %>
+
 
 <div class="jumbotron parallax-section-1">
 

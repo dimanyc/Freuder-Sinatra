@@ -6,7 +6,7 @@ gem 'rake'
 gem 'sinatra-contrib'
 gem 'sass'
 gem 'rack-flash3', :git => "git://github.com/treeder/rack-flash.git"
-
+gem 'dragonfly', :git => 'https://github.com/markevans/dragonfly'
 
 
 
