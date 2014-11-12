@@ -201,8 +201,10 @@ post '/save-profile-image' do
 	@user = User.find(session[:user_id])
 	@filename = @user.username
 # File.open('uploads/' + params['myfile'][:filename], "wb") do |f|
- File.open('uploads/' + @filename, "wb") do |f|
-    f.write(@filename[:tempfile].read)
+	File.open('uploads/' + @filename, "wb") do |f|
+    #f.write(@filename[:tempfile].read)
+    f.write(params['myfile'][:tempfile].read)
+
   end
   flash[:notice] = "The file was successfully uploaded!"
 
