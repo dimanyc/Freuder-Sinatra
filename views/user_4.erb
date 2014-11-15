@@ -1,0 +1,174 @@
+<!--Profile-->
+
+<!--Wall-->
+<div class="container">
+  <div class="jumbotron" id="dn_profile-wall" style="background-image:url(/img/dimanyc-wall.jpg)">
+    <h1><%=@user.fname %> <%=@user.lname %></h1>
+    <h4>@<%=@user.username %></h4>
+  </div><!--end_.dn_profile-wall-->
+</div><!--end_.container-->
+
+<!--Icon-->
+<div class="container">
+  <div class="row" id="dn_body">
+    <div class="col-md-3 col-sm-3 col-xs-6">
+      <img src="<%= if File.exist?("public/img/#{@user.username}.jpg")
+              
+                      "/img/#{@user.username}.jpg"
+                      else 
+                      "/img/blank-profile.jpg"
+                      end 
+                      %>" alt="<%= @user.fname %> <%= @user.lname %> - <%= @user.username %>" class="img-responsive" id="dn_profile-pic" />
+
+      <div class="btn-group btn-group-justified hidden-xs">
+        <a href="#" class="btn btn-default"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm">Change Image</span></a>
+        <a href="#" class="btn btn-default"><i class="fa fa-picture-o"></i> <span class="hidden-xs hidden-sm">Change Wall</span></a>
+      </div>
+
+    </div><!--end_col-md-3-->
+    <div class="col-md-9 col-sm-9 col-xs-6 pull-right" id="dn_tabbed">
+      <div class="bs-example bs-example-tabs" role="tabpanel">
+      <ul id="myTab" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true"><i class="fa fa-paper-plane-o"></i> Newsfeed</a></li>
+        <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false"><i class="fa fa-user"></i> Profile</a></li>
+        <li role="presentation" class=""><a href="#settings" role="tab" id="settings-tab" data-toggle="tab" aria-controls="settings" aria-expanded="false"><i class="fa fa-cog"></i> Setting</a></li>
+        <li role="presentation" class=""><a href="#message" role="tab" id="message-tab" data-toggle="tab" aria-controls="message" aria-expanded="false"><i class="fa fa-pencil"></i> New Message</a></li>
+      </ul>
+      <!--News Feed-->
+      <div id="myTabContent" class="tab-content"><% @all_posts.each do |n| %><%@user_author = User.find(Message.find(n).user_id)%>
+        <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+       
+         
+              <h4><%=Message.find(n).title %></h4>
+              <p><%= Message.find(n).message %></p>
+                <img src="<%= if File.exist?("public/img/#{@user_author.username}.jpg")
+              
+                      "/img/#{@user_author.username}.jpg"
+                      else 
+                      "/img/blank-profile.jpg"
+                      end 
+                      %>" alt="<%= @user_author.fname %> <%= @user_author.lname %> - <%= @user_author.username %>" width="50" height="50" class="img-circle"/>
+                <span>by  <%= @user_author.fname%> <%= @user_author.lname%> / Handle: @<%= @user_author.username%></span>
+                <span class="badge">Posted on: <%= Message.find(n).created_at %></span>
+
+        </div><!--end_#home-->
+        <%end%>
+        <!--Profile-->
+        <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+        <h3>Followers:</h3>
+        
+        <div class="row"><% @followers.each do |i| %>
+          <div class="col-sm-2 col-md-2 dn_user-list">
+            <div class="thumbnail">
+               <img src="/img/<%=i.username%>.jpg" alt="<%=i.username%>" width="270" height="270" alt=""/>
+              <div class="caption text-center">
+                <h5>@<%=i.username%></h5>
+                <div class="btn-group btn-group-justified hidden-xs">
+                  
+                  <%if @user.followed.include?(User.find(i))%>
+                  <a href="/user/<%=i.username%>" class="btn btn-danger btn-sm" role="button"><i class="fa fa-times-circle"></i> Unfollow </a>
+                  <% else  %>
+                  <a href="/users/#{i}/follow" class="btn btn-primary btn-sm" role="button"><i class="fa fa-check-circle"></i> Follow </a>
+                  <%end %>
+                   
+                </div><!--end_btn-group-->
+              </div><!--end_caption-->
+            </div><!--end_thumbnail-->
+          </div><!--end_col-md-3--><%end %>
+        </div><!--end_.row-->
+         
+
+        <h3>Following:</h3>
+        <div class="row"><% @followed.each do |i| %>
+          <div class="col-sm-2 col-md-2 dn_user-list">
+            <div class="thumbnail">
+               <img src="/img/<%=i.username%>.jpg" alt="<%=i.username%>" width="270" height="270" />
+              <div class="caption text-center">
+                <h5>@<%=i.username%></h5>
+                <div class="btn-group btn-group-justified hidden-xs">
+                  <a href="/user/<%=i.username%>" class="btn btn-danger btn-sm" role="button"><i class="fa fa-times-circle"></i> Unfollow</a> 
+                </div><!--end_btn-group-->
+              </div><!--end_caption-->
+            </div><!--end_thumbnail-->
+          </div><!--end_col-md-3--><%end%>
+        </div><!--end_.row-->
+        </div><!--end_#profile-->
+        
+        <!--Settings-->
+        <div role="tabpanel" class="tab-pane fade" id="settings" aria-labelledby="settings-tab">
+
+          
+          <form class="form" action="#" method="post" >
+            <div class="form-group">
+                
+                <div class="col-xs-6">
+                    <label for="first_name"><h4>First name</h4></label>
+                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Dimitry" title="enter your first name if any.">
+                </div><!--end_col-xs-6-->
+            </div><!--end_form-group-->
+            <div class="form-group">
+                
+                <div class="col-xs-6">
+                  <label for="last_name"><h4>Last name</h4></label>
+                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Nazarov" title="enter your last name if any.">
+                </div><!--end_col-xs-6-->
+            </div><!--end_form-group-->
+          
+            <div class="form-group">
+                
+                <div class="col-xs-6">
+                    <label for="username"><h4>Username</h4></label>
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="dimanyc" title="enter your phone number if any.">
+                </div><!--end_col-xs-6-->
+            </div><!--end_form-group-->
+          
+            <div class="form-group">
+                
+                <div class="col-xs-6">
+                    <label for="email"><h4>Email</h4></label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                </div>
+            </div>
+
+            <div class="form-group">
+                 <div class="col-xs-12">
+                      <br>
+                      <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                      <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                  </div>
+            </div>
+          </form>
+              </div><!--end_Settings-->
+      <!--News Feed-->
+<div role="tabpanel" class="tab-pane fade" id="message" aria-labelledby="message-tab">
+     
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">                
+                    <form accept-charset="UTF-8" action="" method="POST">
+                        <textarea class="form-control counted" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;"></textarea>
+                        <h6 class="pull-right" id="counter">320 characters remaining</h6>
+                        <button class="btn btn-info" type="submit">Post New Message</button>
+                    </form>
+                </div><!--end_panel-body-->
+            </div><!--end_.panel-->
+        </div><!--end_col-sm-4-->
+    </div><!--end_.row-->
+  </div><!--end_.container-->
+       
+      
+
+        </div><!--end_#home-->              
+               
+          
+          
+        </div>        
+ 
+      </div>
+    </div>
+    </div><!--end_col-md-9-->
+    
+  </div><!--end_.row-->
+</div><!--end_.container-->

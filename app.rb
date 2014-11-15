@@ -4,8 +4,6 @@ require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
 require 'rack-flash'
 require 'dragonfly'
-#app = Dragonfly.app
-# require 'sinatra/contrib'
 
 
 configure(:development){set :database, "sqlite3:blog.sqlite3"}
@@ -16,7 +14,9 @@ use Rack::Flash, :sweep => true
 
 require './models'
 
-#, '/Home','/home','/index'
+def current_user 
+	@current_user ||= User.find(session[:user_id])
+end
 
 
 get '/' do 
@@ -47,8 +47,11 @@ end
 get "/user/*" do
 	if (session[:user_id])
 		@user = User.where(id: session[:user_id]).first
-		@user_posts = User.find(session[:user_id]).messages  
-		erb :user_3, :locals => {:user => @user, :all_posts => @all_posts, :followers => @followers,:followed => @followed ,:user_posts => @user_posts}
+		@user_posts = User.find(session[:user_id]).messages 
+		@all_posts = Message.all.ids 
+		@followers = User.find(@user.id).followers
+		@followed = User.find(@user.id).followed
+		erb :user_4,:locals => { :user => @user }, :locals => { :all_popst => @all_posts }, :locals => { :followers => @followers }, :locals => { :followed => @followed }, :locals => { :user_author => @user_author } 
 
 	else
 		redirect '/'
@@ -66,7 +69,7 @@ post '/sign-up' do
 	@user = User.new(params)
 	if(@user.save)
 		session[:user_id] = @user.id
-		erb :user_3, :locals => { :user => @user }
+		erb :user_4, :locals => { :user => @user }
 		flash.now[:notice] = "Thanks for registering. Grandpa Sig is excited to see you!"
 		redirect "/user/#{@user.username}"
 	else
@@ -85,47 +88,39 @@ post '/post-new-slip' do
 	@message.user_id = @user.id
 
 	if (@message.save)
-		erb :user_3, :locals => { :user => @user }
+		erb :user_4, :locals => { :user => @user }
 		flash.now[:notice] = "Message has been posted"
 		redirect "/user/#{@user.username}"
 
 	else
 		flash.now[:alert] = "Problem! "
-		erb :user_3, :locals => { :user => @user }
+		erb :user_4, :locals => { :user => @user }
 	end
 
 end
 
 
-get '/logout' do 
-	session.clear 
-	redirect '/'
-end
-
-get '/Feed' do
-	erb :feed
-end
-
-get '/test' do
-	erb :user_3, :locals => { :user => @user }
-end
 
 get "/users/:id/follow" do
-	user = User.find(params[:id])
-	current_user.follow!(user) if user
-	flash[:notice] = "User followed successfully."
-	redirect "/"
+  user = User.find(params[:id])
+  current_user.follow!(user) if user
+  flash[:notice] = "User followed successfully."
+  redirect "/"
 end
 
 get '/index' do 
 	if (session[:user_id])
 		@user = User.where(id: session[:user_id]).first
+		@all_posts = Message.all.ids 
+		@followers = User.find(@user.id).followers
+		@followed = User.find(@user.id).followed
+		@user_author = User.find(Message.find(n).user_id)
 		flash[:notice] = "Welcome back, #{@user.fname}!"
-		erb :user, :locals => { :user => @user }
+		erb :user,:layout => :layout_v2, :locals => { :user => @user }, :locals => { :all_popst => @all_posts }, :locals => { :followers => @followers }, :locals => { :followed => @followed }, :locals => { :user_author => @user_author } 
 		redirect "/user/#{@user.username}"	
 		
 	else
-		erb :home, :layout => :main
+		erb :home, :layout => :layout_v2
 	end
 end
 
@@ -209,5 +204,19 @@ post '/save-profile-image' do
   end
   flash[:notice] = "The file was successfully uploaded!"
 
-	erb :user_3
+	erb :user_4
+end
+
+
+get '/logout' do 
+	session.clear 
+	redirect '/'
+end
+
+get '/Feed' do
+	erb :feed
+end
+
+get '/test' do
+	erb :user_4, :layout => :main, :locals => { :user => @user }
 end

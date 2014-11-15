@@ -8,9 +8,15 @@ class User < ActiveRecord::Base
 	has_many :followers, through: :reverse_relationships, source: :follower
 
 	#one user to follow another 
+	
 	def follow!(user)
 		followed << user 
 	end
+
+	def unfollow!(user)
+		followed.delete(user)
+	end
+
 
 end
 

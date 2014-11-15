@@ -25,7 +25,7 @@
     <meta name="description" content="Dimitry is testing his new Sinatra App">
     <meta name="author" content="Dimitry Nazarov">
 
-    <title>Freuder | <%=@user.fname %> <%=@user.lname %> page</title>
+    <title>Freuder - microblog Lorem Ipsum is simply dummy text</title>
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -64,7 +64,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dn_profile-icon"/>Hello, <%=@user.username %>! <span class="caret"></span><img src="<%= if File.exist?("public/img/#{@user.username}.jpg")
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dn_profile-icon"/>Hello, Dimitry! <span class="caret"></span><img src=<img src="<%= if File.exist?("public/img/#{@user.username}.jpg")
               
                       "/img/#{@user.username}.jpg"
                       else 
@@ -72,7 +72,11 @@
                       end 
                       %>" alt="<%= @user.fname %> <%= @user.lname %> - <%= @user.username %>" width="50px" height="50px" class="hidden-xs"/></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
           </ul>
         </li>
       </ul>
@@ -117,8 +121,9 @@
 
 	<%=yield %>
 
-		
+	<div class="row text-center">	
 	<small>Session ID: <%=session[:user_id] %></small>
+	</div><!--end_.row-->
 </body>
 </html>
 
